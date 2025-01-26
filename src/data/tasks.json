@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1",
+    "email": "user1@gmail.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "date": "03-01-2025",
+    "price": "9.99"
+  },
+  {
+    "id": "2",
+    "email": "user2@gmail.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "date": "02-01-2025",
+    "price": "4.99"
+  },
+  {
+    "id": "3",
+    "email": "user3@gmail.com",
+    "firstName": "John",
+    "lastName": "Doe",
+    "date": "01-01-2025",
+    "price": "29.99"
+  }
+]
