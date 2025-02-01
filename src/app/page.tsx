@@ -187,7 +187,7 @@ export default function Home() {
               <CardHeader>
                 <CardTitle>Recent Sales</CardTitle>
                 <CardDescription>
-                  You made {statistics.monthlySales || "N/A"} sales this month.
+                  You made {statistics.monthlySales || "0"} sales this month.
                 </CardDescription>
               </CardHeader>
               <CardContent>

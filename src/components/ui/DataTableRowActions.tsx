@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { ManageUser } from "./ManageUser";
 
 interface DataTableRowActionsProps<TData> {
   row: Row<TData>;
@@ -18,14 +19,6 @@ interface DataTableRowActionsProps<TData> {
 export function DataTableRowActions<TData>({
   row,
 }: DataTableRowActionsProps<TData>) {
-  const handleEdit = () => {
-    console.log("Edit clicked for ID:", row.getValue("id"));
-  };
-
-  const handleDelete = () => {
-    console.log("Delete clicked for ID:", row.getValue("id"));
-  };
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -38,8 +31,20 @@ export function DataTableRowActions<TData>({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onClick={handleEdit}>Edit</DropdownMenuItem>
-        <DropdownMenuItem onClick={handleDelete}>Delete</DropdownMenuItem>
+        <ManageUser
+          id={Number(row.getValue("id"))}
+          data={{
+            email: row.getValue("email"),
+            firstName: row.getValue("firstName"),
+            lastName: row.getValue("lastName"),
+            price: row.getValue("price"),
+          }}
+          trigger={
+            <DropdownMenuItem onSelect={(e) => e.preventDefault()}>
+              Manage User
+            </DropdownMenuItem>
+          }
+        />
       </DropdownMenuContent>
     </DropdownMenu>
   );

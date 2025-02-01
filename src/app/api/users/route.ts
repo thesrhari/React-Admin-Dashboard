@@ -37,26 +37,38 @@ export async function GET() {
   }
 }
 
-// export async function PUT(request: NextRequest) {
-//   const { searchParams } = new URL(request.url);
-//   const userId = Number(searchParams.get("id"));
+export async function DELETE(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const id = Number(searchParams.get("id"));
+  try {
+    const user = await prisma.user.delete({ where: { id } });
 
-//   const body = await request.json();
-//   const validation = userSchema.safeParse(body);
+    return NextResponse.json(user, { status: 200 });
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-//   if (!validation.success) {
-//     return NextResponse.json(validation.error.format(), { status: 400 });
-//   }
+export async function PUT(request: NextRequest) {
+  const { searchParams } = new URL(request.url);
+  const userId = Number(searchParams.get("id"));
 
-//   const user = await prisma.user.update({
-//     where: { id: userId },
-//     data: {
-//       email: validation.data.email,
-//       firstName: validation.data.firstName,
-//       lastName: validation.data.lastName,
-//       price: validation.data.price,
-//     },
-//   });
+  const body = await request.json();
+  const validation = userSchema.safeParse(body);
 
-//   return NextResponse.json(user, { status: 201 });
-// }
+  if (!validation.success) {
+    return NextResponse.json(validation.error.format(), { status: 400 });
+  }
+
+  const user = await prisma.user.update({
+    where: { id: userId },
+    data: {
+      email: validation.data.email,
+      firstName: validation.data.firstName,
+      lastName: validation.data.lastName,
+      price: validation.data.price,
+    },
+  });
+
+  return NextResponse.json(user, { status: 200 });
+}

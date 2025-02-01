@@ -29,6 +29,32 @@ export const columns: ColumnDef<typeof userSchema>[] = [
     },
   },
   {
+    accessorKey: "firstName",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="First Name" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="max-w-[500px] truncate font-medium">
+          {row.getValue("firstName")}
+        </div>
+      );
+    },
+  },
+  {
+    accessorKey: "lastName",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Last Name" />
+    ),
+    cell: ({ row }) => {
+      return (
+        <div className="max-w-[500px] truncate font-medium">
+          {row.getValue("lastName")}
+        </div>
+      );
+    },
+  },
+  {
     accessorKey: "createdAt",
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Purchase Date" />
