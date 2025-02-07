@@ -19,7 +19,7 @@ export function RecentSales({ users }: RecentSalesProps) {
 
   return (
     <div className="space-y-8">
-      {recentSales.map((user) => (
+      {recentSales.toReversed().map((user) => (
         <div key={user.id} className="flex items-center">
           <Avatar className="h-9 w-9">
             <AvatarFallback>
